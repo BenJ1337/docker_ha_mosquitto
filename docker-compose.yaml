@@ -1,0 +1,16 @@
+services:
+  ha-msqtt:
+    container_name: ha-msqtt
+    image: eclipse-mosquitto:2.0
+    restart: unless-stopped
+    volumes:
+      - ./config/:/mosquitto/config/
+      - msqtt_ha:/mosquitto/
+    networks:
+      - ha_network
+networks:
+  ha_network:
+    external: true
+volumes:
+  msqtt_ha:
+    external: true
