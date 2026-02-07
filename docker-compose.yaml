@@ -4,9 +4,12 @@ services:
     image: eclipse-mosquitto:2.0
     restart: unless-stopped
     volumes:
-      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf
-      - ${PASSWD_DIR:-}passwd.txt:/mosquitto/config/passwd.txt
+      - ./log/:/mosquitto/log/
+      - /etc/localtime:/etc/localtime:ro
+      - ./mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
       - msqtt_ha:/mosquitto/
+      - ${CERT_DIR:-.}/certs/:/certs/:ro
+#      - ${PASSWD_DIR:-.}/passwd.txt:/mosquitto/config/passwd.txt:ro
     networks:
       - ha_network
 networks:
