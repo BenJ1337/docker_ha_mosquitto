@@ -45,8 +45,6 @@ openssl req -x509 -new -nodes -key ca.key.pem -sha256 -days 3650 -out ca.crt.pem
 ```bash
 openssl genrsa -out mTLS/client.key.pem 4096
 openssl req -new -key mTLS/client.key.pem -out mTLS/client.csr -subj "/CN=TestClient/C=DE/ST=Bayern/L=Landshut/O=None"
-openssl x509 -req -in mTLS/client.csr -CA ca.crt.pem -CAkey ca.key.pem -CAcreateserial -out mTLS/client.crt.pem -days 365 -sha2561~openssl genrsa -out mTLS/client.key.pem 4096
-openssl req -new -key mTLS/client.key.pem -out mTLS/client.csr -subj "/CN=TestClient/C=DE/ST=Bayern/L=Landshut/O=None"
 openssl x509 -req -in mTLS/client.csr -CA ca.crt.pem -CAkey ca.key.pem -CAcreateserial -out mTLS/client.crt.pem -days 365 -sha256
 ```
 
